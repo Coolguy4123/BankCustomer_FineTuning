@@ -28,15 +28,20 @@ The goal of this project is to design and implement a complete ML pipeline that:
 
 ```bash
 data/
-└── Complaint_SyntheticResponse_1k.csv   # Filtered dataset after running KAGGLE_BankingComplaint-PEFT.ipynb locally (~600 clean samples)
+└── complaints.csv                       # Raw CFPB complaint dataset used by the local synthesis notebook
+
+csv/
+└── Complaint_SyntheticResponse_1k.csv   # Cleaned dataset used for fine-tuning / Kaggle upload
+# Created by notebooks/LOCAL_Synthesis_notebook.ipynb when run locally:
+# - csv/synthetic_ollama_responses_1k.csv
+# - csv/synthetic_ollama_checkpoint.csv
 
 notebooks/
-├── LOCAL_Synthesis_notebook.ipynb       # Synthetic data generation (Ollama)
+├── LOCAL_Synthesis_notebook.ipynb       # Reads ../data/complaints.csv and writes ../csv/*
 └── KAGGLE_BankingComplaint-PEFT.ipynb   # Fine-tuning (Qwen + Unsloth + QLoRA)
 
 app.py                                  # Streamlit demo (base vs fine-tuned)
-.env # For HuggingFace Token
-.env.example # Example for env
+.env.example                            # Example for env
 README.md
 requirements.txt
 ```
@@ -61,6 +66,12 @@ notebooks/LOCAL_Synthesis_notebook.ipynb
 Requirements:
 - Ollama installed  
 - Model: `llama3.1:8b`  
+- Input file present at `data/complaints.csv`
+
+This notebook uses paths relative to the notebook directory:
+- reads `../data/complaints.csv`
+- writes `../csv/synthetic_ollama_responses_1k.csv`
+- writes `../csv/synthetic_ollama_checkpoint.csv`
 
 
 #### b. Fine-Tuning (Recommended running Kaggle)
@@ -72,7 +83,7 @@ notebooks/KAGGLE_BankingComplaint-PEFT.ipynb
 
 Steps:
 1. Upload dataset (`Complaint_SyntheticResponse_1k.csv`) to Kaggle  
-2. Update dataset path in notebook  
+2. Update dataset path in notebook if your Kaggle input slug differs from the hardcoded path
 3. Run all cells  
 
 ---

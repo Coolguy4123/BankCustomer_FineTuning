@@ -1,4 +1,4 @@
-# Customer Complaint Response Fine-Tuning (Applied Project)
+# CS 4210 Final - Customer Complaint Response Fine-Tuning (Applied Project)
 
 ## Project Overview
 

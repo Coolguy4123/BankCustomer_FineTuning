@@ -32,9 +32,6 @@ data/
 
 csv/
 └── Complaint_SyntheticResponse_1k.csv   # Cleaned dataset used for fine-tuning / Kaggle upload
-# Created by notebooks/LOCAL_Synthesis_notebook.ipynb when run locally:
-# - csv/synthetic_ollama_responses_1k.csv
-# - csv/synthetic_ollama_checkpoint.csv
 
 notebooks/
 ├── LOCAL_Synthesis_notebook.ipynb       # Reads ../data/complaints.csv and writes ../csv/*

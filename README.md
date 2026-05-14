@@ -4,7 +4,7 @@
 
 This is an **applied machine learning project** focused on building a practical system for generating professional banking customer support responses, showcasing the difference between a base model vs fine-tuned model.
 
-The CFPB banking complaint dataset contains complaint narratives but does not include corresponding support responses. To address this, synthetic responses were generated using a local Llama 3.1 8B model. These responses were then used to fine-tune a smaller model (Qwen2.5-1.5B-Instruct) using QLoRA and LoRA through the Unsloth library.
+The CFPB banking complaint dataset from Kaggle contains complaint narratives but does not include corresponding support responses. Therefore, synthetic responses were generated using a local Llama 3.1 8B model. These responses were then used to fine-tune a smaller model (Qwen2.5-1.5B-Instruct) using QLoRA and LoRA through the Unsloth library.
 
 The goal of this project is to design and implement a complete ML pipeline that:
 - generates training data
@@ -15,7 +15,7 @@ The goal of this project is to design and implement a complete ML pipeline that:
 
 ## Pipeline Summary
 
-1. Load CFPB complaint dataset from Kaggle
+1. Load CFPB complaint dataset and extract `complaints.csv` from Kaggle: https://www.kaggle.com/datasets/adhamelkomy/bank-customer-complaint-analysis/data
 2. Generate synthetic responses using Llama 3.1 8B (local Ollama)  
 3. Filter low-quality responses  
 4. Fine-tune Qwen2.5-1.5B using QLoRA (Unsloth)  
@@ -42,7 +42,7 @@ requirements.txt
 ```
 ---
 
-## How to RUN
+## How to Run
 ### 1. Set up HuggingFace Token in .env
 Input your HuggingFace token, example is provided in `.env.example` and import your HF Token for the StremlitDemo to work
 
@@ -65,16 +65,10 @@ Requirements:
 
 #### b. Fine-Tuning (Recommended running Kaggle)
 
-Run this notebook on **Kaggle with GPU** since file paths are in kaggle format:
+Run this notebook on **Kaggle with GPU** since file paths are in kaggle format and Kaggle offers GPU acceleration:
 ```bash
 notebooks/KAGGLE_BankingComplaint-PEFT.ipynb
 ```
-
-
-Reason:
-- QLoRA training requires GPU  
-- Kaggle provides free NVIDIA T4 GPU  
-- Faster and more stable than local CPU training  
 
 Steps:
 1. Upload dataset (`Complaint_SyntheticResponse_1k.csv`) to Kaggle  
